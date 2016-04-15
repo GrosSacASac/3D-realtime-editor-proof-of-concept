@@ -176,7 +176,6 @@ var view3d = (function () {
     data.rotation 
     data.position
     data.scaling*/
-        //(name of the sphere, segments, diameter, scene) 
         var sphere = B.Mesh.CreateSphere("sphere", 10.0, 1, scene);
         Object.assign(sphere.rotation, data.rotation);
         Object.assign(sphere.position, data.position);

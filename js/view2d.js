@@ -83,15 +83,9 @@ var view2d = (function () {
     };
     
     D.fx.useMouseMouvementAsInput = function (event) {
-        var distance;
-            
         screenX = event.screenX;
-        screenY = event.screenY;
+        //screenY = event.screenY;
         if ((currentAction in keyToAction) && usingMouse) {
-            distance = Math.pow((
-                Math.pow(Math.abs(startX - screenX),2) + 
-                Math.pow(Math.abs(startY - screenY),2)
-                ), 0.5);
             D.vr.howMuch = (screenX*8/screen.width)-4 //old(-distance  * 4/ screen.width) + 2;
             tryRefreshEditPreview();
         }
