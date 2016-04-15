@@ -1,0 +1,59 @@
+html, body {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #304551;
+    font-family: 'Open Sans',Arial,sans-serif;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+d-xyzform {
+    display: block;
+}
+
+d-xyzform input {
+    width: 2em;
+}
+
+.commands {
+    background-color: #fdf8f3;
+    width: 90%;
+    height: 90%;
+    position: fixed; 
+    top: 5%; 
+    transition: top 0.25s;
+    left: 5%;
+}
+
+.inactive {
+    top: -200%; 
+}
+
+.basic-menu {
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+    left: 0;
+    background-color:RGBA(255,255,255,0.8);
+    height:1.5em;
+}
+
+.fullwidth {
+    width: 100%;
+}
+.inline-block{
+    display: inline-block;
+}
+.hidden{
+    display: none;
+}

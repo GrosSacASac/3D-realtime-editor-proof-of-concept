@@ -1,0 +1,21 @@
+{
+  "name": "live3d",
+  "version": "1.0.1",
+  "description": "live 3d editor",
+  "main": "server.js",
+  "engines": {
+    "node": "5.7.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "grossacasacs",
+  "license": "ISC",
+  "dependencies": {
+    "babylonjs": "^2.3.0",
+    "dom99": "^1.9.7",
+    "ramda": "^0.21.0",
+    "socket.io": "^1.4.5"
+  }
+}
