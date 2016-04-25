@@ -131,7 +131,7 @@ var view3d = (function () {
             }
 
         });
-    }
+    };
     var switchCamera = function () {
         if (camera === camera2) {
             camera = camera1;
