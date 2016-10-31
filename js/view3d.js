@@ -66,7 +66,6 @@ var view3d = (function () {
         
         //When pointer down event is raised
         scene.onPointerDown = function (evt, pickResult) {
-            // if the click hits the ground object, we change the impact position
             if (!pickResult.hit) {
                 return;
             }
