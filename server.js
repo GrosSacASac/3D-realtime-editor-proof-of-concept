@@ -12,7 +12,8 @@ const mimeDictionairy = {//add more as you need
     '.html': 'text/html',
     '.js': 'text/javascript',
     '.css': 'text/css',
-    '.json': 'application/json'
+    '.json': 'application/json',
+    '.jpg': 'image/jpeg'
 };
 
 //initial

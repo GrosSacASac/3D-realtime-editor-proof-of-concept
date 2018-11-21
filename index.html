@@ -6,49 +6,48 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="css/3deditor.css">
 </head>
-<body data-fx="keydown-tryShortCut">
+<body data-function="keydown-tryShortCut">
 
-    <template data-el="xyzformTemplate-d-xyzform">
+    <template data-template="d-xyzform">
         <span>3D Vector</span>
-        <label>X<input data-vr="x" type="number"></label>
-        <label>Y<input data-vr="y" type="number"></label>
-        <label>Z<input data-vr="z" type="number"></label>
+        <label>X<input data-variable="x" type="number"></label>
+        <label>Y<input data-variable="y" type="number"></label>
+        <label>Z<input data-variable="z" type="number"></label>
     </template>
     
-    <canvas data-fx="mousemove-useMouseMouvementAsInput" data-el="canvas"></canvas>
+    <canvas data-function="mousemove-useMouseMouvementAsInput" data-element="canvas"></canvas>
     
     <div class="basic-menu">
-        <button data-fx="click-switchCamera">Camera</button>
-        <div class="inline-block" data-el="editing">
-            <button data-fx="click-showCommands">Commands</button>
-            <label><input data-fx="useInput" data-vr="howMuch" type="range" min="-3.0" max="3.0" step="0.1">Value: <input data-fx="useInput" type="number" step="0.1" data-vr="howMuch"></label>
-            <label>X<input data-vr="isX" type="checkbox"></label>
-            <label>Y<input data-vr="isY" type="checkbox"></label>
-            <label>Z<input data-vr="isZ" type="checkbox"></label>
-            <span data-vr="helpMessage"></span>
+        <button data-function="switchCamera">Camera</button>
+        <div class="inline-block" data-element="editing">
+            <button data-function="showCommands">Commands</button>
+            <label><input data-function="useInput" data-variable="howMuch" type="range" min="-3.0" max="3.0" step="0.1">Value: <input data-function="useInput" type="number" step="0.1" data-variable="howMuch"></label>
+            <label>X<input data-variable="isX" type="checkbox"></label>
+            <label>Y<input data-variable="isY" type="checkbox"></label>
+            <label>Z<input data-variable="isZ" type="checkbox"></label>
+            <span data-variable="helpMessage"></span>
         </div>
     </div>
     
-    <div data-el="commands" class="commands inactive">
+    <div data-element="commands" class="commands inactive">
         <h1>Add objects</h1>
-        <d-xyzform data-in="rotation">Rotation</d-xyzform>
-        <d-xyzform data-in="position">Position</d-xyzform>
-        <d-xyzform data-in="scaling">Scaling</d-xyzform>
-        <button data-fx="click-addBox">Add box</button>
-        <button data-fx="click-addSphere">Add Sphere</button>
-        <!--<button data-fx="click-deleteAll">delete All</button>
+        <d-xyzform data-scope="rotation">Rotation</d-xyzform>
+        <d-xyzform data-scope="position">Position</d-xyzform>
+        <d-xyzform data-scope="scaling">Scaling</d-xyzform>
+        <button data-function="addBox">Add box</button>
+        <button data-function="addSphere">Add Sphere</button>
+        <!--<button data-function="deleteAll">delete All</button>
         not implemented correctly-->
-        <p>Recent action: <span data-vr="lastAction"></span></p>
+        <p>Recent action: <span data-variable="lastAction"></span></p>
         <hr>
         <p>Click to select, G to start grab, S to scale, and R to Rotate. Press x,y or z to toogle the affected plans.</p>
-        <button class="fullwidth" data-fx="click-showCommands">Hide commands</button>
+        <button class="fullwidth" data-function="showCommands">Hide commands</button>
     </div>
    
+<script nomodule src="node_modules/@babel/polyfill/dist/polyfill.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="node_modules/ramda/dist/ramda.min.js"></script>
-<script src="node_modules/dom99/polyfill.min.js"></script>
-<script src="node_modules/dom99/js/dom99.es5.min.js"></script>
-<!--<script src="node_modules/dom99/js/dom99.js"></script> for debug-->
+<script src="node_modules/dom99/built/dom99Script.es5.min.js"></script>
 <!-- Babylon.js -->
 <script src="js/babylonjs/hand.minified-1.2.js"></script>
 <!--<script src="js/babylonjs/babylon.js"></script>-->

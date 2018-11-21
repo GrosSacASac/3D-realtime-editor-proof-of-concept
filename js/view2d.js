@@ -1,8 +1,6 @@
-/*dom99, bridge, screen, Date*/
+/*d, bridge, screen, Date*/
 var view2d = (function () {
     "use strict";
-    var D = dom99,
-        BOOL = {"false": false, "true": true};
     var currentAction = "",
         keyToAction = {
             "S": "scaling",
@@ -30,63 +28,63 @@ var view2d = (function () {
 
     
     // UI event listeners
-    D.fx.showCommands = function (event) {
-        D.el.commands.classList.toggle("inactive");
+    d.functions.showCommands = function (event) {
+        d.elements.commands.classList.toggle("inactive");
     };
     
-    D.fx.switchCamera = function (event) {
+    d.functions.switchCamera = function (event) {
         
-        D.el.editing.classList.toggle("hidden");
+        d.elements.editing.classList.toggle("hidden");
         enterFullScreen();
         view3d.switchCamera();
     };
     
-    D.fx.addBox = function (event) {
-        D.vr.name = String(Date.now());
-        view3d.addBox(D.vr);
-        bridge.updateServerState("addBox", D.vr);
-        D.vr.lastAction = "Box added !";
+    d.functions.addBox = function (event) {
+        d.feed("name", String(Date.now()));
+        d.feed("lastAction", "Box added !");
+        view3d.addBox(d.variables);
+        bridge.updateServerState("addBox", d.variables);
     };    
     
-    D.fx.addSphere = function (event) {
-        D.vr.name = String(Date.now());
-        view3d.addSphere(D.vr);
-        bridge.updateServerState("addSphere", D.vr);
-        D.vr.lastAction = "Sphere added !";
+    d.functions.addSphere = function (event) {
+        d.feed("name", String(Date.now()));
+        d.feed("lastAction", "Sphere added !");
+        view3d.addSphere(d.variables);
+        bridge.updateServerState("addSphere", d.variables);
     };
     
-    D.fx.deleteAll = function (event) {
-        view3d.deleteAll(D.vr);
+    d.functions.deleteAll = function (event) {
+        view3d.deleteAll(d.variables);
         bridge.updateServerState("deleteAll", {});
-        D.vr.lastAction = "deleteAll !";
+        d.feed("lastAction", "deleteAll !");
     };
     
     var getDataMeasures = function() {
         return {
             what: keyToAction[currentAction],
-            x: BOOL[D.vr.isX] ? parseFloat(D.vr.howMuch): 0,
-            y: BOOL[D.vr.isY] ? parseFloat(D.vr.howMuch): 0,
-            z: BOOL[D.vr.isZ] ? parseFloat(D.vr.howMuch): 0
+            x: d.variables.isX ? parseFloat(d.variables.howMuch): 0,
+            y: d.variables.isY ? parseFloat(d.variables.howMuch): 0,
+            z: d.variables.isZ ? parseFloat(d.variables.howMuch): 0
         }
     };
     
     var tryRefreshEditPreview = function() {
-        if ((currentAction in keyToAction) && !isNaN(parseFloat(D.vr.howMuch))){
+        if ((currentAction in keyToAction) && !isNaN(parseFloat(d.variables.howMuch))){
             
             view3d.editPreview(getDataMeasures());
         }
     };
     
-    D.fx.useInput = function (event) {
+    d.functions.useInput = function (event) {
         usingMouse = false; // using input instead
         tryRefreshEditPreview();
     };
     
-    D.fx.useMouseMouvementAsInput = function (event) {
+    d.functions.useMouseMouvementAsInput = function (event) {
         screenX = event.screenX;
         //screenY = event.screenY;
         if ((currentAction in keyToAction) && usingMouse) {
-            D.vr.howMuch = (screenX*8/screen.width)-4 //old(-distance  * 4/ screen.width) + 2;
+            d.feed("howMuch", (screenX * 8 / screen.width) - 4); 
             tryRefreshEditPreview();
         }
     };
@@ -99,26 +97,26 @@ var view2d = (function () {
     
     var terminateCurrentAction = function() {
         currentAction = "";
-        D.vr.helpMessage = "";
+        d.feed("helpMessage", "");
     }
     
-    D.fx.tryShortCut = function (event) {
+    d.functions.tryShortCut = function (event) {
         var pressedKey = String.fromCharCode(event.keyCode);
         
         var startNewEditPreview = function(message) {
             if (!view3d.getSelection().name) {
-                D.vr.helpMessage = "Nothing is selected";
+                d.feed("helpMessage", "Nothing is selected");
                 return;
             }
             view3d.editPreviewCancel();
             currentAction = pressedKey;
             captureCurrentMousePosition();
-            D.vr.helpMessage = message;
+            d.variables.helpMessage = message;
         };
         
         var confirmEditPreview = function() {
-            if (isNaN(parseFloat(D.vr.howMuch))) {
-                D.vr.helpMessage += "Value is invalid";
+            if (isNaN(parseFloat(d.variables.howMuch))) {
+                d.feed("helpMessage", d.variables.helpMessage + "Value is invalid");
                 return;
             }
             var data = getDataMeasures();
@@ -150,15 +148,15 @@ var view2d = (function () {
             }
             event.preventDefault();
         } else if (pressedKey === "X") {
-            D.vr.isX = !BOOL[D.vr.isX];
+            d.feed("isX", !d.variables.isX);
             tryRefreshEditPreview();
             event.preventDefault();
         } else if (pressedKey === "Y") {
-            D.vr.isY = !BOOL[D.vr.isY];
+            d.feed("isY", !d.variables.isY);
             tryRefreshEditPreview();
             event.preventDefault();
         } else if (pressedKey === "Z") {
-            D.vr.isZ = !BOOL[D.vr.isZ];
+            d.feed("isZ", !d.variables.isZ);
             tryRefreshEditPreview();
             event.preventDefault();
         } else if ((event.keyCode === 13) && currentAction) {//Enter

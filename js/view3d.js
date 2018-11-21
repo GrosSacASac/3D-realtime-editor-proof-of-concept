@@ -1,8 +1,7 @@
-/*BABYLON, dom99, R, bridge, view2d, */
+/*BABYLON, d, R, bridge, view2d, */
 var view3d = (function () {
     "use strict";
-    var D = dom99,
-        B = BABYLON;
+    var B = BABYLON;
     var canvas,
         camera,
         camera1,
@@ -97,7 +96,7 @@ var view3d = (function () {
         return scene;
     }
     var start = function() {
-        canvas = D.el.canvas;
+        canvas = d.elements.canvas;
         engine = new B.Engine(canvas, true);
         scene = createScene();
 
@@ -157,6 +156,7 @@ var view3d = (function () {
     };
     
     var addBox = function (data) {
+        console.log(data);
     /*all have .x .y and .z
     data.name
     data.rotation 

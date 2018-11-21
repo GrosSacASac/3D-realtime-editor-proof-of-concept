@@ -1,10 +1,9 @@
-/*dom99, bridge, view3d, view2d*/
+/*d, bridge, view3d, view2d*/
 (function () {
     "use strict";
-    var D = dom99;
 
     // initial data-vr values
-    D.vr = {
+    var initialVariables = {
         "position": {
             "x": 0,
             "y": 2,
@@ -25,7 +24,7 @@
         isY: false,
         isZ: false
     };
-    D.linkJsAndDom();
+    d.start(document.body, initialVariables);
     view3d.start();
     bridge.startLinkWithServer();
 }());
