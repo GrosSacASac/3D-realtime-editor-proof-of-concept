@@ -52,9 +52,9 @@ var view2d = (function () {
         //todo
         view3d.addSphere({
             rotation: {
-                x: d.get("rotation", "x")
-                y: d.get("rotation", "y")
-                z: d.get("rotation", "z")
+                x: d.get("rotation", "x"),
+                y: d.get("rotation", "y"),
+                z: d.get("rotation", "z"),
             }
         });
         bridge.updateServerState("addSphere", d.variables);
